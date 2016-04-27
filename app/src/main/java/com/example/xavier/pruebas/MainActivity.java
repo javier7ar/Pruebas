@@ -92,7 +92,9 @@ public class MainActivity extends AppCompatActivity {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(new Date());
         String imageFileName = "CLIE_" + timeStamp + "_";
-        File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+
+        String pathToFiles = getApplicationContext().getFilesDir().getPath();
+      //  File storageDir = getApplicationContext().getFilesDir().getPath(); //Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(
                 imageFileName,  /* prefix */
                 ".jpg",         /* suffix */
@@ -208,7 +210,6 @@ public class MainActivity extends AppCompatActivity {
     private void galleryAddPic() {
         Intent mediaScanIntent = new Intent("android.intent.action.MEDIA_SCANNER_SCAN_FILE");
         File f = new File(mCurrentPhotoPath);
-        Log.e("SetPic","mCurrentPhotoPath: "+mCurrentPhotoPath);
         Uri contentUri = Uri.fromFile(f);
         mediaScanIntent.setData(contentUri);
         this.sendBroadcast(mediaScanIntent);
