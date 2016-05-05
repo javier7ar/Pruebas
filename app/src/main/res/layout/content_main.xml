@@ -8,6 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:id="@+id/container"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.xavier.pruebas.MainActivity"
     tools:showIn="@layout/activity_main">
@@ -40,5 +41,18 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="183dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Launch"
+        android:id="@+id/button2"
+        android:onClick="fragFoto"
+        android:layout_alignTop="@+id/button"
+        android:layout_toRightOf="@+id/button"
+        android:layout_toEndOf="@+id/button"
+        android:layout_marginLeft="41dp"
+        android:layout_marginStart="41dp" />
+
 
 </RelativeLayout>
