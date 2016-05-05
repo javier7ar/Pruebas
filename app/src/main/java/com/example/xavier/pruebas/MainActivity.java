@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         mImageView2 = (ImageView) findViewById(R.id.imageView);
+
     }
 
     @Override
@@ -94,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         String imageFileName = "CLIE_" + timeStamp + "_";
 
         String pathToFiles = getApplicationContext().getFilesDir().getPath();
-      //  File storageDir = getApplicationContext().getFilesDir().getPath(); //Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(
                 imageFileName,  /* prefix */
                 ".jpg",         /* suffix */
@@ -166,32 +167,32 @@ public class MainActivity extends AppCompatActivity {
     private void setPic() {
         // TODO revisar, da out_of_memory cuando se llama varias veces (tratar varias veces)
 
-        mImageView2.setVisibility(View.INVISIBLE);
+        //mImageView2.setVisibility(View.INVISIBLE);
 		/* There isn't enough memory to open up more than a couple camera photos */
 		/* So pre-scale the target bitmap into which the file is decoded */
-
-		/* Get the size of the ImageView */
+/*
+		// Get the size of the ImageView
         int targetW = mImageView2.getWidth();
         int targetH = mImageView2.getHeight();
 
-		/* Get the size of the image */
+		// Get the size of the image
         BitmapFactory.Options bmOptions = new BitmapFactory.Options();
         bmOptions.inJustDecodeBounds = true;
         BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
         int photoW = bmOptions.outWidth;
         int photoH = bmOptions.outHeight;
 
-		/* Figure out which way needs to be reduced less */
+		// Figure out which way needs to be reduced less
         int scaleFactor = 1;
         if ((targetW > 0) || (targetH > 0)) {
             scaleFactor = Math.min(photoW/targetW, photoH/targetH);
         }
 
-		/* Set bitmap options to scale the image decode target */
+		// Set bitmap options to scale the image decode target
         bmOptions.inJustDecodeBounds = false;
         bmOptions.inSampleSize = scaleFactor;
 
-		/* Decode the JPEG file into a Bitmap */
+		// Decode the JPEG file into a Bitmap
         Bitmap bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
         Log.e("SetPic","mCurrentPhotoPath: "+mCurrentPhotoPath);
         //solicitudCliente.setPathToImage(mCurrentPhotoPath);
@@ -199,10 +200,12 @@ public class MainActivity extends AppCompatActivity {
         if (bitmap == null) {
             //Toast.makeText(getActivity(), "bitmap NULL", Toast.LENGTH_LONG).show();
         }
+*/
+		// Associate the Bitmap to the ImageView
+        //mImageView2.setImageBitmap(bitmap);
 
-		/* Associate the Bitmap to the ImageView */
-        mImageView2.setImageBitmap(bitmap);
-        mImageView2.setVisibility(View.VISIBLE);
+        mImageView2.setImageURI(Uri.fromFile(photoFile));
+       // mImageView2.setVisibility(View.VISIBLE);
 
         //Toast.makeText(getActivity(), "setPic", Toast.LENGTH_LONG).show();
     }
