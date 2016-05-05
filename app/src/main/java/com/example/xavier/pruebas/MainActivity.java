@@ -1,6 +1,8 @@
 package com.example.xavier.pruebas;
 
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -39,7 +41,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements PhotoFragment.OnFragmentInteractionListener{
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
 
@@ -63,7 +65,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mImageView2 = (ImageView) findViewById(R.id.imageView);
+       // mImageView2 = (ImageView) findViewById(R.id.imageView);
+
     }
 
     @Override
@@ -90,16 +93,18 @@ public class MainActivity extends AppCompatActivity {
 
     private File createImageFile() throws IOException {
         // Create an image file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(new Date());
-        String imageFileName = "CLIE_" + timeStamp + "_";
-
-        String pathToFiles = getApplicationContext().getFilesDir().getPath();
-      //  File storageDir = getApplicationContext().getFilesDir().getPath(); //Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        //String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(new Date());
+        //String imageFileName = "CLIE_" + timeStamp + "_";
+        //String pathToFiles = getApplicationContext().getFilesDir().getPath();
+        File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
         File image = File.createTempFile(
-                imageFileName,  /* prefix */
+                "photoTest",  /* prefix */
                 ".jpg",         /* suffix */
                 storageDir      /* directory */
         );
+
+      //  File outputDir = getApplicationContext().getCacheDir(); // context being the Activity pointer
+      //  File outputFile = File.createTempFile("phototest", ".jpg", outputDir);
 
         return image;
     }
@@ -108,6 +113,8 @@ public class MainActivity extends AppCompatActivity {
 
         File f = createImageFile();
         mCurrentPhotoPath = f.getAbsolutePath();
+        Toast.makeText(this, "mCurrentPhotoPath: "+mCurrentPhotoPath, Toast.LENGTH_LONG).show();
+        Log.e("mCurrentPhotoPath", "mCurrentPhotoPath: " + mCurrentPhotoPath);
 
         return f;
     }
@@ -135,6 +142,16 @@ public class MainActivity extends AppCompatActivity {
             }
 
         }
+    }
+
+    public void fragFoto(View view){
+        //standar way to attach fragment to an activity
+        PhotoFragment fragmento = PhotoFragment.newInstance("","");
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.container, fragmento);
+        transaction.addToBackStack(null);
+        transaction.commit();
+
     }
 
     @Override
@@ -166,43 +183,46 @@ public class MainActivity extends AppCompatActivity {
     private void setPic() {
         // TODO revisar, da out_of_memory cuando se llama varias veces (tratar varias veces)
 
-        mImageView2.setVisibility(View.INVISIBLE);
+        //mImageView2.setVisibility(View.INVISIBLE);
 		/* There isn't enough memory to open up more than a couple camera photos */
 		/* So pre-scale the target bitmap into which the file is decoded */
-
-		/* Get the size of the ImageView */
+/*
+		// Get the size of the ImageView
         int targetW = mImageView2.getWidth();
         int targetH = mImageView2.getHeight();
 
-		/* Get the size of the image */
+		/* Get the size of the image
         BitmapFactory.Options bmOptions = new BitmapFactory.Options();
         bmOptions.inJustDecodeBounds = true;
         BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
         int photoW = bmOptions.outWidth;
         int photoH = bmOptions.outHeight;
 
-		/* Figure out which way needs to be reduced less */
+		/* Figure out which way needs to be reduced less
         int scaleFactor = 1;
         if ((targetW > 0) || (targetH > 0)) {
             scaleFactor = Math.min(photoW/targetW, photoH/targetH);
         }
 
-		/* Set bitmap options to scale the image decode target */
+		/* Set bitmap options to scale the image decode target
         bmOptions.inJustDecodeBounds = false;
         bmOptions.inSampleSize = scaleFactor;
 
-		/* Decode the JPEG file into a Bitmap */
+		/* Decode the JPEG file into a Bitmap
         Bitmap bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
-        Log.e("SetPic","mCurrentPhotoPath: "+mCurrentPhotoPath);
+        Log.e("SetPic", "mCurrentPhotoPath: " + mCurrentPhotoPath);
+        Toast.makeText(this, "mCurrentPhotoPath: "+mCurrentPhotoPath, Toast.LENGTH_LONG).show();
         //solicitudCliente.setPathToImage(mCurrentPhotoPath);
 
         if (bitmap == null) {
             //Toast.makeText(getActivity(), "bitmap NULL", Toast.LENGTH_LONG).show();
         }
 
-		/* Associate the Bitmap to the ImageView */
-        mImageView2.setImageBitmap(bitmap);
-        mImageView2.setVisibility(View.VISIBLE);
+		/* Associate the Bitmap to the ImageView
+        //mImageView2.setImageBitmap(bitmap);
+*/
+        mImageView2.setImageURI(Uri.fromFile(photoFile));
+  //      mImageView2.setVisibility(View.VISIBLE);
 
         //Toast.makeText(getActivity(), "setPic", Toast.LENGTH_LONG).show();
     }
@@ -213,5 +233,10 @@ public class MainActivity extends AppCompatActivity {
         Uri contentUri = Uri.fromFile(f);
         mediaScanIntent.setData(contentUri);
         this.sendBroadcast(mediaScanIntent);
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+        //
     }
 }
