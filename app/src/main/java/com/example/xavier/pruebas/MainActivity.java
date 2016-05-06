@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
         String imageFileName = "CLIE_" + timeStamp + "_";
 
         String pathToFiles = getApplicationContext().getFilesDir().getPath();
-      //  File storageDir = getApplicationContext().getFilesDir().getPath(); //Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(
                 imageFileName,  /* prefix */
                 ".jpg",         /* suffix */
