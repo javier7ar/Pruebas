@@ -149,6 +149,11 @@ public class MainActivity extends AppCompatActivity implements PhotoFragment.OnF
 
         }
 
+    public void tomarMuestra(View view){
+        Intent intent = new Intent(this, TakeSampleActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 

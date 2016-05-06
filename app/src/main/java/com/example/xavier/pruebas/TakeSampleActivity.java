@@ -14,6 +14,12 @@ public class TakeSampleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_take_sample);
 
+
+        PhotoFragment fragmento = PhotoFragment.newInstance("","");
+
+        getFragmentManager().beginTransaction()
+                .add(R.id.container, fragmento).commit();
+
     }
 
 }
