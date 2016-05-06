@@ -54,5 +54,15 @@
         android:layout_marginLeft="41dp"
         android:layout_marginStart="41dp" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Muestra"
+        android:id="@+id/button3"
+        android:layout_above="@+id/button2"
+        android:layout_alignRight="@+id/imageView"
+        android:layout_alignEnd="@+id/imageView"
+        android:onClick="tomarMuestra" />
+
 
 </RelativeLayout>
