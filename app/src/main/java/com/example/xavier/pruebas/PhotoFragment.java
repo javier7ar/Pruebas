@@ -2,9 +2,12 @@ package com.example.xavier.pruebas;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -126,7 +129,7 @@ public class PhotoFragment extends Fragment {
 
     private File createImageFile() throws IOException {
         // Create an image file name
-        File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+        File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(
                 "photoTest",  /* prefix */
                 ".jpg",         /* suffix */
@@ -140,7 +143,26 @@ public class PhotoFragment extends Fragment {
         @Override
         public void onClick(View v) {
             //To-Do sacar foto violenta
-
+            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            // Ensure that there's a camera activity to handle the intent
+            if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+                // Create the File where the photo should go
+                File photoFile = null;
+                try {
+                    photoFile = createImageFile();
+                    photoPath = photoFile.getAbsolutePath();
+                    
+                } catch (IOException ex) {
+                    // Error occurred while creating the File
+                    Log.e("error", ex.getMessage());
+                    photoPath = "";
+                }
+                // Continue only if the File was successfully created
+                if (photoFile != null) {
+                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile));
+                    startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+                }
+            }
         }
     }
 }
