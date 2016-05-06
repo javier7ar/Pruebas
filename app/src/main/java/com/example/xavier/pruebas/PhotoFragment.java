@@ -3,6 +3,8 @@ package com.example.xavier.pruebas;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -138,6 +140,31 @@ public class PhotoFragment extends Fragment {
         return image;
     }
 
+    private void setPic() {
+        // Get the dimensions of the View
+      /**  int targetW = image_view.getWidth();
+        int targetH = image_view.getHeight();
+
+        // Get the dimensions of the bitmap
+        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+        bmOptions.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(photoPath, bmOptions);
+        int photoW = bmOptions.outWidth;
+        int photoH = bmOptions.outHeight;
+
+        // Determine how much to scale down the image
+        int scaleFactor = Math.min(photoW/targetW, photoH/targetH);
+
+        // Decode the image file into a Bitmap sized to fill the View
+        bmOptions.inJustDecodeBounds = false;
+        bmOptions.inSampleSize = scaleFactor; */
+       // bmOptions.inPurgeable = true;
+
+        Bitmap bitmap = BitmapFactory.decodeFile(photoPath);
+        Log.i("picture path",photoPath);
+        image_view.setImageBitmap(bitmap);
+    }
+
     private class TakePictureClickListener implements View.OnClickListener{
 
         @Override
@@ -151,7 +178,6 @@ public class PhotoFragment extends Fragment {
                 try {
                     photoFile = createImageFile();
                     photoPath = photoFile.getAbsolutePath();
-                    
                 } catch (IOException ex) {
                     // Error occurred while creating the File
                     Log.e("error", ex.getMessage());
@@ -161,6 +187,7 @@ public class PhotoFragment extends Fragment {
                 if (photoFile != null) {
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile));
                     startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+                    setPic();
                 }
             }
         }
