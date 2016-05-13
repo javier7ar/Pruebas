@@ -41,7 +41,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements PhotoFragment.OnFragmentInteractionListener{
+public class MainActivity extends AppCompatActivity implements PhotoFragment.OnPhotoFragmentInteractionListener{
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
 
@@ -233,7 +233,7 @@ public class MainActivity extends AppCompatActivity implements PhotoFragment.OnF
     }
 
     @Override
-    public void onFragmentInteraction(Uri uri) {
+    public void onPhotoTaked(Uri uri) {
         //
     }
 }
