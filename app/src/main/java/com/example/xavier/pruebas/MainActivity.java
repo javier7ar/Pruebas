@@ -154,9 +154,9 @@ public class MainActivity extends AppCompatActivity implements PhotoFragment.OnF
         startActivity(intent);
     }
 
-    @Override
+  /**  @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-
+        Toast.makeText(this, "Entra activity", Toast.LENGTH_LONG).show();
         if (requestCode == REQUEST_IMAGE_CAPTURE) {
 
             if (resultCode == Activity.RESULT_OK) {
@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity implements PhotoFragment.OnF
             }
 
         }
-    }
+    }*/
 
     private void setPic() {
         // TODO revisar, da out_of_memory cuando se llama varias veces (tratar varias veces)

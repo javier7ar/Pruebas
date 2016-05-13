@@ -25,4 +25,11 @@
         android:id="@+id/photo_preview"
         android:layout_gravity="left|top" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Next"
+        android:id="@+id/bt_next"
+        android:layout_gravity="right|bottom" />
+
 </FrameLayout>

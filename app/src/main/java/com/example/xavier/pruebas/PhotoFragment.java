@@ -1,29 +1,25 @@
 package com.example.xavier.pruebas;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
-import java.io.File;
-import java.io.IOException;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link PhotoFragment.OnFragmentInteractionListener} interface
+ * {@link PhotoFragment.OnPhotoFragmentInteractionListener} interface
  * to handle interaction events.
  * Use the {@link PhotoFragment#newInstance} factory method to
  * create an instance of this fragment.
@@ -34,16 +30,15 @@ public class PhotoFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     static final int REQUEST_TAKE_PHOTO = 1;
+    static final int REQUEST_IMAGE_CAPTURE = 1;
 
-    //url de la foto tomada
-    private String photoPath;
     private ImageView image_view;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
-    private OnFragmentInteractionListener mListener;
+    private OnPhotoFragmentInteractionListener mListener;
 
     public PhotoFragment() {
         // Required empty public constructor
@@ -85,6 +80,9 @@ public class PhotoFragment extends Fragment {
         Button b_tomarFoto = (Button) root_view.findViewById(R.id.tomar_foto);
         b_tomarFoto.setOnClickListener(new TakePictureClickListener());
 
+        Button bt_siguiente = (Button) root_view.findViewById(R.id.bt_next);
+        bt_siguiente.setOnClickListener(new NextClickListener());
+
         image_view = (ImageView) root_view.findViewById(R.id.photo_preview);
 
         return root_view;
@@ -93,18 +91,18 @@ public class PhotoFragment extends Fragment {
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.onPhotoTaked(uri);
         }
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof OnPhotoFragmentInteractionListener) {
+            mListener = (OnPhotoFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+                    + " must implement OnPhotoFragmentInteractionListener");
         }
     }
 
@@ -124,45 +122,30 @@ public class PhotoFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
+    public interface OnPhotoFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onPhotoTaked(Uri uri);
     }
 
-    private File createImageFile() throws IOException {
-        // Create an image file name
-        File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-        File image = File.createTempFile(
-                "photoTest",  /* prefix */
-                ".jpg",         /* suffix */
-                storageDir      /* directory */
-        );
-        return image;
-    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Toast.makeText(getActivity(), "Entra fragment", Toast.LENGTH_LONG).show();
+        if (requestCode == REQUEST_IMAGE_CAPTURE) {
 
-    private void setPic() {
-        // Get the dimensions of the View
-      /**  int targetW = image_view.getWidth();
-        int targetH = image_view.getHeight();
+            if (resultCode == Activity.RESULT_OK) {
+                if (data == null){
+                    Toast.makeText(getActivity(), "data null", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    Toast.makeText(getActivity(), "data not null", Toast.LENGTH_LONG).show();
+                    image_view.setImageURI(data.getData());
 
-        // Get the dimensions of the bitmap
-        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-        bmOptions.inJustDecodeBounds = true;
-        BitmapFactory.decodeFile(photoPath, bmOptions);
-        int photoW = bmOptions.outWidth;
-        int photoH = bmOptions.outHeight;
+                }
+            } else {
+                Toast.makeText(getActivity(), "Se produjo un error al intentar abrir la aplicacion de fotos", Toast.LENGTH_LONG).show();
+            }
 
-        // Determine how much to scale down the image
-        int scaleFactor = Math.min(photoW/targetW, photoH/targetH);
-
-        // Decode the image file into a Bitmap sized to fill the View
-        bmOptions.inJustDecodeBounds = false;
-        bmOptions.inSampleSize = scaleFactor; */
-       // bmOptions.inPurgeable = true;
-
-        Bitmap bitmap = BitmapFactory.decodeFile(photoPath);
-        Log.i("picture path",photoPath);
-        image_view.setImageBitmap(bitmap);
+        }
     }
 
     private class TakePictureClickListener implements View.OnClickListener{
@@ -173,23 +156,16 @@ public class PhotoFragment extends Fragment {
             Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             // Ensure that there's a camera activity to handle the intent
             if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
-                // Create the File where the photo should go
-                File photoFile = null;
-                try {
-                    photoFile = createImageFile();
-                    photoPath = photoFile.getAbsolutePath();
-                } catch (IOException ex) {
-                    // Error occurred while creating the File
-                    Log.e("error", ex.getMessage());
-                    photoPath = "";
-                }
-                // Continue only if the File was successfully created
-                if (photoFile != null) {
-                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile));
                     startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
-                    setPic();
-                }
             }
+        }
+    }
+
+    private class NextClickListener implements View.OnClickListener{
+
+        @Override
+        public void onClick(View v) {
+            mListener.onPhotoTaked(null);
         }
     }
 }
