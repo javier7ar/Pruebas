@@ -24,6 +24,10 @@ public class PhotoCameraFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    private static final int CAMERA_FACING_BACK = 0;
+    private static final int CAMERA_FACING_FRONT = 1;
+
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -35,10 +39,33 @@ public class PhotoCameraFragment extends Fragment {
     }
 
     /** A safe way to get an instance of the Camera object. */
-    public  Camera getCameraInstance(){
+    public Camera getCameraInstance(){
+        //from 0 to n-1 cameras
+        int num_cameras = Camera.getNumberOfCameras();
         Camera c = null;
+        //if there is only 1 camera, then
         try {
-            c = Camera.open(); // attempt to get a Camera instance
+            if(num_cameras == 0) {
+                c = Camera.open(); // attempt to get a Camera instance
+            }
+            else{
+                int backCamera = 0;
+                for(int i=0;i<=num_cameras;i++){
+                    //c = Camera.open(i);
+                    Camera.CameraInfo cam_info = null;
+                    Camera.getCameraInfo(0, cam_info);
+                    if(cam_info.facing == CAMERA_FACING_BACK){
+                        backCamera = i;
+                    }
+                }
+                if(backCamera == 0) {
+                    //open default camera
+                    c = Camera.open();
+                }
+                else{
+                    c = Camera.open(backCamera);
+                }
+            }
         }
         catch (Exception e){
             // Camera is not available (in use or does not exist)
