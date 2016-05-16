@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Camera;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +32,6 @@ public class PhotoFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     static final int REQUEST_TAKE_PHOTO = 1;
-    static final int REQUEST_IMAGE_CAPTURE = 1;
 
     private ImageView image_view;
 
@@ -96,7 +97,7 @@ public class PhotoFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(Activity context) {
         super.onAttach(context);
         if (context instanceof OnPhotoFragmentInteractionListener) {
             mListener = (OnPhotoFragmentInteractionListener) context;
@@ -130,7 +131,7 @@ public class PhotoFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         Toast.makeText(getActivity(), "Entra fragment", Toast.LENGTH_LONG).show();
-        if (requestCode == REQUEST_IMAGE_CAPTURE) {
+        if (requestCode == REQUEST_TAKE_PHOTO) {
 
             if (resultCode == Activity.RESULT_OK) {
                 if (data == null){
@@ -148,6 +149,33 @@ public class PhotoFragment extends Fragment {
         }
     }
 
+    /*camera*/
+   /* private boolean safeCameraOpen(int id) {
+        boolean qOpened = false;
+
+        try {
+            releaseCameraAndPreview();
+            Camera mCamera;
+            mCamera = Camera.open(id);
+            qOpened = (mCamera != null);
+        } catch (Exception e) {
+            Log.e(getString(R.string.app_name), "failed to open Camera");
+            e.printStackTrace();
+        }
+
+        return qOpened;
+    }*/
+
+   /* private void releaseCameraAndPreview() {
+        mPreview.setCamera(null);
+        if (mCamera != null) {
+            mCamera.release();
+            mCamera = null;
+        }
+    }*/
+
+
+    /*inner classes or helpers*/
     private class TakePictureClickListener implements View.OnClickListener{
 
         @Override
