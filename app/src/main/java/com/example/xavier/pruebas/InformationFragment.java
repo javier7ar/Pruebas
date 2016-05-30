@@ -1,14 +1,14 @@
 package com.example.xavier.pruebas;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 
 /**
@@ -20,14 +20,10 @@ import android.widget.Button;
  * create an instance of this fragment.
  */
 public class InformationFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private static final String ARG_TEXT_TO_SHOW = "texto";
+
+    private String mParamTextToShow;
 
     private OnInformationFragmentInteractionListener mListener;
 
@@ -39,16 +35,14 @@ public class InformationFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
+     * @param aText Text to show.
      * @return A new instance of fragment InformationFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static InformationFragment newInstance(String param1, String param2) {
+    public static InformationFragment newInstance(String aText) {
         InformationFragment fragment = new InformationFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putString(ARG_TEXT_TO_SHOW, aText);
         fragment.setArguments(args);
         return fragment;
     }
@@ -57,8 +51,7 @@ public class InformationFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            mParamTextToShow = getArguments().getString(ARG_TEXT_TO_SHOW);
         }
     }
 
@@ -68,7 +61,10 @@ public class InformationFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_information, container, false);
 
-        Button bt_siguiente = (Button) rootView.findViewById(R.id.bt_siguiente);
+        TextView textView = (TextView) rootView.findViewById(R.id.lb_text_to_show);
+        textView.setText(mParamTextToShow);
+
+        Button bt_siguiente = (Button) rootView.findViewById(R.id.bt_next);
         bt_siguiente.setOnClickListener(new NextClickListener());
 
         return rootView;

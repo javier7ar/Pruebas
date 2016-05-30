@@ -20,26 +20,13 @@
         >
 
         <TextView
-            android:id="@+id/lb_desc_cliente"
+            android:id="@+id/lb_desc_new_sample"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nueva Muestra: "
+            android:text="Nueva Muestra"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/activityBar_text"
             android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/lb_cliente"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/lb_desc_cliente"
-            android:layout_toEndOf="@+id/lb_desc_cliente"
-            android:text="......"
-            android:textColor="@color/activityBar_text"
-            android:textStyle="bold"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-
 
 
         <TextView

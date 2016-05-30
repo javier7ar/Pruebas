@@ -16,52 +16,19 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:text="Bienvenidos al registro regional de gatos"
+        android:layout_centerInParent="true"
         android:id="@+id/textView" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Foto"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="50dp"
-        android:id="@+id/button"
-        android:onClick="tomarFoto"
-        android:layout_alignParentLeft="true"
- />
 
-    <ImageView
-        android:layout_width="500dp"
-        android:layout_height="400dp"
-        android:id="@+id/imageView"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="183dp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Launch"
-        android:id="@+id/button2"
-        android:onClick="fragFoto"
-        android:layout_alignTop="@+id/button"
-        android:layout_toRightOf="@+id/button"
-        android:layout_toEndOf="@+id/button"
-        android:layout_marginLeft="41dp"
-        android:layout_marginStart="41dp" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Muestra"
+        android:text="Tomar Muestra"
         android:id="@+id/button3"
-        android:layout_above="@+id/button2"
-        android:layout_alignRight="@+id/imageView"
-        android:layout_alignEnd="@+id/imageView"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
         android:onClick="tomarMuestra" />
 
 
