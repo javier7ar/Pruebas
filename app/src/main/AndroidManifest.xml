@@ -20,7 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -30,7 +30,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".TakeSampleActivity"
+            android:name=".ui.take_sample.TakeSampleActivity"
             android:label="@string/title_activity_take_sample"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>

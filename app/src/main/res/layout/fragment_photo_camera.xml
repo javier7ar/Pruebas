@@ -25,11 +25,12 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tomar Foto"
             android:id="@+id/b_take_picture"
             android:onClick="captureImage2"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:drawableTop="@drawable/ic_camera_black_36dp"
+            android:drawablePadding="-10dp"/>
 
         <TextView
             android:layout_width="wrap_content"

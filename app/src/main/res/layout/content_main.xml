@@ -10,13 +10,13 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:id="@+id/container"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.xavier.pruebas.MainActivity"
+    tools:context=".ui.MainActivity"
     tools:showIn="@layout/activity_main">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bienvenidos al registro regional de gatos"
+        android:text="@string/txt_wellcome_message"
         android:layout_centerInParent="true"
         android:id="@+id/textView" />
 
@@ -25,7 +25,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tomar Muestra"
+        android:text="@string/bt_take_sample"
         android:id="@+id/button3"
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
