@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Regional Cats Registration</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_take_sample">Take Sample</string>
+
+    <!-- Main Activity -->
+    <string name="txt_wellcome_message">Wellcome to the Regional Cats Registration</string>
+    <string name="bt_take_sample">Take Sample</string>
+
+
+    <string name="bt_next">Next</string>
+</resources>
