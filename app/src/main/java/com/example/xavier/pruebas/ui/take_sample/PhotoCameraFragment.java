@@ -1,10 +1,12 @@
 package com.example.xavier.pruebas.ui.take_sample;
 
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.hardware.Camera;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Surface;
 import android.view.SurfaceHolder;
@@ -12,12 +14,12 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.xavier.pruebas.R;
-
-import java.io.FileNotFoundException;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -30,7 +32,7 @@ import java.io.IOException;
  * Use the {@link PhotoCameraFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PhotoCameraFragment extends Fragment implements SurfaceHolder.Callback{
+public class PhotoCameraFragment extends Fragment implements SurfaceHolder.Callback, Camera.PictureCallback{
 
     private static final String ARG_PARAM_TEXTO = "param_texto";
     private static final String ARG_PARAM_IMAGEN = "param_imagen";
@@ -39,27 +41,19 @@ public class PhotoCameraFragment extends Fragment implements SurfaceHolder.Callb
     private String mParamImagen;
 
     private Camera camera;
+
     private SurfaceView surfaceView;
     private SurfaceHolder surfaceHolder;
+    private ViewGroup photo_layout;
+    private ViewGroup preview_layout;
+    private ImageView photo_preview;
 
-    private Camera.PictureCallback jpegCallback;
+    private Uri imageURI;
 
     private OnPhotoCameraFragmentInteractionListener mListener;
 
     public PhotoCameraFragment() {
         // Required empty public constructor
-    }
-
-    /** A safe way to get an instance of the Camera object. */
-    public  Camera getCameraInstance(){
-        Camera c = null;
-        try {
-            c = Camera.open(); // attempt to get a Camera instance
-        }
-        catch (Exception e){
-            // Camera is not available (in use or does not exist)
-        }
-        return c; // returns null if camera is unavailable
     }
 
     /**
@@ -70,7 +64,7 @@ public class PhotoCameraFragment extends Fragment implements SurfaceHolder.Callb
      * @param paramImagen Imagen para superponer en la Camara.
      * @return A new instance of fragment PhotoCameraFragment.
      */
-    // TODO: Rename and change types and number of parameters
+
     public static PhotoCameraFragment newInstance(String paramTexto, String paramImagen) {
         PhotoCameraFragment fragment = new PhotoCameraFragment();
         Bundle args = new Bundle();
@@ -88,28 +82,6 @@ public class PhotoCameraFragment extends Fragment implements SurfaceHolder.Callb
             mParamImagen = getArguments().getString(ARG_PARAM_IMAGEN);
         }
 
-        jpegCallback = new Camera.PictureCallback() {
-
-            @Override
-            public void onPictureTaken(byte[] data, Camera camera) {
-                FileOutputStream fos = null;
-                String filename = "prueba.jpg";
-                try {
-
-                    fos = getContext().openFileOutput(filename, Context.MODE_PRIVATE);
-                    fos.write(data);
-                    fos.close();
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } finally {
-                }
-
-                Toast.makeText(getActivity().getApplicationContext(), "Picture Saved with name" + filename, Toast.LENGTH_LONG).show();
-                refreshCamera();
-            }
-        };
     }
 
     @Override
@@ -119,6 +91,9 @@ public class PhotoCameraFragment extends Fragment implements SurfaceHolder.Callb
         // Inflate the layout for this fragment
         View root_view = inflater.inflate(R.layout.fragment_photo_camera, container, false);
 
+        photo_layout = (ViewGroup) root_view.findViewById(R.id.photo_layout);
+        preview_layout = (ViewGroup) root_view.findViewById(R.id.preview_layout);
+
         surfaceView = (SurfaceView) root_view.findViewById(R.id.surfaceView2);
         surfaceHolder = surfaceView.getHolder();
 
@@ -126,10 +101,12 @@ public class PhotoCameraFragment extends Fragment implements SurfaceHolder.Callb
         surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
 
         Button b_takePicture = (Button) root_view.findViewById(R.id.b_take_picture);
-        b_takePicture.setOnClickListener(new SavePicture());
+        b_takePicture.setOnClickListener(new TakePictureClick());
 
         TextView textView = (TextView) root_view.findViewById(R.id.lb_instructions);
         textView.setText(mParamTexto);
+
+        photo_preview = (ImageView) root_view.findViewById(R.id.photo_preview);
 
         return root_view;
     }
@@ -247,24 +224,74 @@ public class PhotoCameraFragment extends Fragment implements SurfaceHolder.Callb
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnPhotoCameraFragmentInteractionListener {
-        // TODO: Update argument type and name
+
         void onPhotoCameraFragmentInteraction(Uri uri);
     }
 
-    public void captureImage2() throws IOException {
-        camera.takePicture(null, null, jpegCallback);
-    }
 
-    private class SavePicture implements View.OnClickListener {
+
+    private class TakePictureClick implements View.OnClickListener {
 
         @Override
         public void onClick(View v) {
             try {
-                captureImage2();
-                mListener.onPhotoCameraFragmentInteraction(null);
+                captureImage();
+                //mListener.onPhotoCameraFragmentInteraction(imageURI);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
+
+    public void captureImage() throws IOException {
+        // Toma la foto y llama a onPictureTaken()
+        camera.takePicture(null, null, this);
+    }
+
+    @Override
+    public void onPictureTaken(byte[] data, Camera camera) {
+
+        try {
+            ContextWrapper cw = new ContextWrapper(getContext());
+
+            // Directorio privado de la aplicacion
+            File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
+            // El nombre del archivo armado con la fecha/hora
+            String filename = String.format("%d.jpg", System.currentTimeMillis());
+            // Creao el archivo
+            File file = new File(directory,filename);
+            // Creo el output stream para escribir sobre el archivo
+            FileOutputStream fos =  new FileOutputStream(file);
+            // Guardo y cierro
+            fos.write(data);
+            fos.close();
+
+            imageURI = Uri.fromFile(file);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getActivity().getApplicationContext(), "Error:" + e.toString(), Toast.LENGTH_LONG).show();
+        }
+
+        //refreshCamera();
+        showPreviewLayout();
+    }
+
+    private void showPreviewLayout () {
+        // Oculto el layout de la camara
+        photo_layout.setVisibility(View.INVISIBLE);
+        // FIXME cerrar camara aca y volver a abrir cuando vuelve a tomar la foto
+
+        // Muestro el layout del preview
+        preview_layout.setVisibility(View.VISIBLE);
+
+        // Cargo la imagen en el control que la muestra
+        photo_preview.setImageURI(imageURI);
+        photo_preview.refreshDrawableState();
+        Log.e("Image URI",imageURI.toString());
+    }
+
+
+
+
 }

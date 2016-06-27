@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.example.xavier.pruebas.modelo.MultipleSelectOption;
 import com.example.xavier.pruebas.modelo.MultipleSelectStep;
 import com.example.xavier.pruebas.modelo.PhotoStep;
+import com.example.xavier.pruebas.modelo.SelectOneStep;
 import com.example.xavier.pruebas.modelo.Step;
 import com.example.xavier.pruebas.pruebas.PhotoFragment;
 import com.example.xavier.pruebas.R;
@@ -26,7 +27,8 @@ import java.util.ArrayList;
 public class TakeSampleActivity extends AppCompatActivity implements PhotoFragment.OnPhotoFragmentInteractionListener,
                                                                      InformationFragment.OnInformationFragmentInteractionListener,
                                                                      PhotoCameraFragment.OnPhotoCameraFragmentInteractionListener,
-                                                                     MultipleSelectFragment.OnFragmentInteractionListener {
+                                                                     MultipleSelectFragment.OnFragmentInteractionListener,
+                                                                     SelectOneFragment.OnFragmentInteractionListener{
 
 
     //private int proximoPaso = 0;
@@ -45,21 +47,30 @@ public class TakeSampleActivity extends AppCompatActivity implements PhotoFragme
 
         // Opciones para el multi select
         ArrayList<MultipleSelectOption> optionsToSelect = new ArrayList<MultipleSelectOption>();
-        optionsToSelect.add(new MultipleSelectOption(getResources().getString(R.string.step_3_param_1),false));
-        optionsToSelect.add(new MultipleSelectOption(getResources().getString(R.string.step_3_param_2),false));
-        optionsToSelect.add(new MultipleSelectOption(getResources().getString(R.string.step_3_param_3),false));
+        optionsToSelect.add(new MultipleSelectOption(getResources().getString(R.string.step_3_param_1), false));
+        optionsToSelect.add(new MultipleSelectOption(getResources().getString(R.string.step_3_param_2), false));
+        optionsToSelect.add(new MultipleSelectOption(getResources().getString(R.string.step_3_param_3), false));
         optionsToSelect.add(new MultipleSelectOption(getResources().getString(R.string.step_3_param_4),false));
+
+        // Opciones para el select one
+        ArrayList<MultipleSelectOption> optionsToSelect2 = new ArrayList<MultipleSelectOption>();
+        optionsToSelect2.add(new MultipleSelectOption(getResources().getString(R.string.step_5_param_1),false));
+        optionsToSelect2.add(new MultipleSelectOption(getResources().getString(R.string.step_5_param_2),false));
+        optionsToSelect2.add(new MultipleSelectOption(getResources().getString(R.string.step_5_param_3),false));
+        optionsToSelect2.add(new MultipleSelectOption(getResources().getString(R.string.step_5_param_4),false));
 
         workflow = new Workflow();
         workflow.addStep(new InformationStep(getResources().getString(R.string.step_1_param_1)));
 
         workflow.addStep(new MultipleSelectStep(optionsToSelect));
 
+        workflow.addStep(new SelectOneStep(optionsToSelect2));
+
         workflow.addStep(new PhotoStep(getResources().getString(R.string.step_2_param_1),getResources().getString(R.string.step_2_param_2)));
 
 
         workflow.addStep(new PhotoStep(getResources().getString(R.string.step_4_param_1),getResources().getString(R.string.step_4_param_2)));
-        workflow.addStep(new InformationStep(getResources().getString(R.string.step_5_param_1)));
+        workflow.addStep(new InformationStep(getResources().getString(R.string.step_6_param_1)));
 
         siguientePaso();
 
@@ -88,6 +99,10 @@ public class TakeSampleActivity extends AppCompatActivity implements PhotoFragme
             else if (MultipleSelectStep.class.isInstance(step)) {
                 MultipleSelectStep multipleSelectStep = (MultipleSelectStep) step;
                 fragmento = MultipleSelectFragment.newInstance(multipleSelectStep.getOptionsToSelect());
+            }
+            else if (SelectOneStep.class.isInstance(step)) {
+                SelectOneStep selectOneStep = (SelectOneStep) step;
+                fragmento = SelectOneFragment.newInstance(selectOneStep.getOptionsToSelect());
             }
             else
                 fragmento = null;
@@ -159,6 +174,12 @@ public class TakeSampleActivity extends AppCompatActivity implements PhotoFragme
         for (MultipleSelectOption option : aOptionsToShow) {
             Log.e("onOptionsSelected", option.getTextToShow() +":" + String.valueOf(option.isSelected()));
         }
+
+        siguientePaso();
+    }
+
+    @Override
+    public void onOneOptionSelected(ArrayList<MultipleSelectOption> aOptionsToShow) {
 
         siguientePaso();
     }

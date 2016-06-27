@@ -4,12 +4,14 @@
     android:layout_height="match_parent"
     tools:context="letseeitcrash.android.controllincameraapp.PhotoCameraFragment">
 
-    <!-- TODO: Update blank fragment layout -->
 
     <RelativeLayout
+        android:id="@+id/photo_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="left|top">
+        android:layout_gravity="start|top"
+
+        >
 
         <SurfaceView
             android:layout_width="wrap_content"
@@ -26,7 +28,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/b_take_picture"
-            android:onClick="captureImage2"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:drawableTop="@drawable/ic_camera_black_36dp"
@@ -44,5 +45,35 @@
             android:layout_alignParentTop="true"
             android:layout_marginTop="20dp"
             android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/preview_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="start|top"
+        android:visibility="invisible"
+        >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/bt_next"
+            android:id="@+id/photo_preview"
+            android:layout_gravity="start|top"
+        />
+
+        <Button
+            android:id="@+id/bt_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bt_next"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="30dp" />
+
     </RelativeLayout>
 </FrameLayout>

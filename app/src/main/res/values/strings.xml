@@ -24,7 +24,12 @@
     <string name="step_4_param_1">Saquele una foto a la cabeza de su gato.</string>
     <string name="step_4_param_2">""</string>
 
-    <string name="step_5_param_1">Muchas gracias por su colaboracion!</string>
+    <string name="step_5_param_1">Es color Negro</string>
+    <string name="step_5_param_2">Es color Blanco</string>
+    <string name="step_5_param_3">Es multicolor</string>
+    <string name="step_5_param_4">Es de otro color</string>
+
+    <string name="step_6_param_1">Muchas gracias por su colaboracion!</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
