@@ -2,7 +2,11 @@ package com.example.xavier.pruebas.ui.take_sample;
 
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.hardware.Camera;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -107,6 +111,15 @@ public class PhotoCameraFragment extends Fragment implements SurfaceHolder.Callb
         textView.setText(mParamTexto);
 
         photo_preview = (ImageView) root_view.findViewById(R.id.photo_preview);
+
+        Button b_next = (Button) root_view.findViewById(R.id.bt_next);
+        b_next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onPhotoCameraFragmentInteraction(imageURI
+                );
+            }
+        });
 
         return root_view;
     }
@@ -262,8 +275,25 @@ public class PhotoCameraFragment extends Fragment implements SurfaceHolder.Callb
             File file = new File(directory,filename);
             // Creo el output stream para escribir sobre el archivo
             FileOutputStream fos =  new FileOutputStream(file);
+
+
+            Bitmap realImage = BitmapFactory.decodeByteArray(data, 0, data.length);
+            ExifInterface exif=new ExifInterface(file.toString());
+
+            if(exif.getAttribute(ExifInterface.TAG_ORIENTATION).equalsIgnoreCase("6")){
+                realImage= rotate(realImage, 90);
+            } else if(exif.getAttribute(ExifInterface.TAG_ORIENTATION).equalsIgnoreCase("8")){
+                realImage= rotate(realImage, 270);
+            } else if(exif.getAttribute(ExifInterface.TAG_ORIENTATION).equalsIgnoreCase("3")){
+                realImage= rotate(realImage, 180);
+            } else if(exif.getAttribute(ExifInterface.TAG_ORIENTATION).equalsIgnoreCase("0")){
+                realImage= rotate(realImage, 90);
+            }
+
+            boolean bo = realImage.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+
             // Guardo y cierro
-            fos.write(data);
+            //fos.write(data);
             fos.close();
 
             imageURI = Uri.fromFile(file);
@@ -275,6 +305,17 @@ public class PhotoCameraFragment extends Fragment implements SurfaceHolder.Callb
 
         //refreshCamera();
         showPreviewLayout();
+    }
+
+    public static Bitmap rotate(Bitmap bitmap, int degree) {
+        int w = bitmap.getWidth();
+        int h = bitmap.getHeight();
+
+        Matrix mtx = new Matrix();
+        //       mtx.postRotate(degree);
+        mtx.setRotate(degree);
+
+        return Bitmap.createBitmap(bitmap, 0, 0, w, h, mtx, true);
     }
 
     private void showPreviewLayout () {

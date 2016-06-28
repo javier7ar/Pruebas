@@ -10,24 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5565c433-bb5a-487c-85d6-2fb5dea252f2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/xavier/pruebas/ui/take_sample/SelectOneFragment.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/xavier/pruebas/modelo/SelectOneStep.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_select_one.xml" />
-      <change type="DELETED" beforePath="C:\Users\Xavier\AndroidStudioProjects\Pruebas\.idea\libraries\animated_vector_drawable_23_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Xavier\AndroidStudioProjects\Pruebas\.idea\libraries\appcompat_v7_23_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Xavier\AndroidStudioProjects\Pruebas\.idea\libraries\design_23_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Xavier\AndroidStudioProjects\Pruebas\.idea\libraries\recyclerview_v7_23_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Xavier\AndroidStudioProjects\Pruebas\.idea\libraries\support_annotations_23_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Xavier\AndroidStudioProjects\Pruebas\.idea\libraries\support_v4_23_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Xavier\AndroidStudioProjects\Pruebas\.idea\libraries\support_vector_drawable_23_2_1.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.8/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/xavier/pruebas/ui/take_sample/PhotoCameraFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/xavier/pruebas/ui/take_sample/PhotoCameraFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/xavier/pruebas/ui/take_sample/TakeSampleActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/xavier/pruebas/ui/take_sample/TakeSampleActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_photo_camera.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_photo_camera.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Pruebas.iws" />
@@ -93,12 +80,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PhotoCameraFragment.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="PhotoCameraFragment.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/xavier/pruebas/ui/take_sample/PhotoCameraFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="289" column="45" selection-start-line="289" selection-start-column="45" selection-end-line="289" selection-end-column="45" />
-              <folding />
+            <state vertical-scroll-proportion="0.2627866">
+              <caret line="115" column="14" selection-start-line="115" selection-start-column="14" selection-end-line="115" selection-end-column="14" />
+              <folding>
+                <element signature="e#4070#4273#0" expanded="true" />
+                <element signature="e#4272#4273#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -106,8 +96,8 @@
       <file leaf-file-name="fragment_photo_camera.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_photo_camera.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.2413793">
-              <caret line="63" column="8" selection-start-line="63" selection-start-column="8" selection-end-line="63" selection-end-column="8" />
+            <state vertical-scroll-proportion="-8.0">
+              <caret line="66" column="36" selection-start-line="66" selection-start-column="29" selection-end-line="66" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -131,10 +121,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SelectOneFragment.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SelectOneFragment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/xavier/pruebas/ui/take_sample/SelectOneFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.4691358">
+            <state vertical-scroll-proportion="0.0">
               <caret line="67" column="69" selection-start-line="67" selection-start-column="69" selection-end-line="67" selection-end-column="69" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -1780,12 +1770,12 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/xavier/pruebas/modelo/Workflow.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/xavier/pruebas/modelo/MultipleSelectOption.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_photo_camera.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/xavier/pruebas/ui/take_sample/PhotoCameraFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/xavier/pruebas/modelo/SelectOneStep.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/xavier/pruebas/ui/take_sample/TakeSampleActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/xavier/pruebas/ui/take_sample/SelectOneFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_select_one.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/xavier/pruebas/ui/take_sample/PhotoCameraFragment.java" />
       </list>
     </option>
   </component>
@@ -2235,7 +2225,13 @@
       <option name="project" value="LOCAL" />
       <updated>1466710922803</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="ultimo 2">
+      <created>1467061821168</created>
+      <option name="number" value="00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1467061821168</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -2248,7 +2244,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32997763" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3344519" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3344519" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -2290,7 +2286,8 @@
     <MESSAGE value="Mas lindo" />
     <MESSAGE value="ultimo" />
     <MESSAGE value="string-en e icono camara" />
-    <option name="LAST_COMMIT_MESSAGE" value="string-en e icono camara" />
+    <MESSAGE value="ultimo 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="ultimo 2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2471,7 +2468,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="129" column="36" selection-start-line="129" selection-start-column="36" selection-end-line="129" selection-end-column="36" />
-          <folding />
+          <folding>
+            <element signature="e#4070#4273#0" expanded="true" />
+            <element signature="e#4272#4273#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2555,7 +2555,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="129" column="36" selection-start-line="129" selection-start-column="36" selection-end-line="129" selection-end-column="36" />
-          <folding />
+          <folding>
+            <element signature="e#4070#4273#0" expanded="true" />
+            <element signature="e#4272#4273#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2713,14 +2716,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/xavier/pruebas/ui/take_sample/PhotoCameraFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="289" column="45" selection-start-line="289" selection-start-column="45" selection-end-line="289" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/xavier/pruebas/modelo/MultipleSelectOption.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.20987654">
@@ -2741,17 +2736,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.39962825">
           <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="25" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_photo_camera.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.2413793">
-          <caret line="63" column="8" selection-start-line="63" selection-start-column="8" selection-end-line="63" selection-end-column="8" />
           <folding />
         </state>
       </provider>
@@ -2839,10 +2823,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/xavier/pruebas/ui/take_sample/SelectOneFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.4691358">
+        <state vertical-scroll-proportion="0.0">
           <caret line="67" column="69" selection-start-line="67" selection-start-column="69" selection-end-line="67" selection-end-column="69" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_photo_camera.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.0">
+          <caret line="66" column="36" selection-start-line="66" selection-start-column="29" selection-end-line="66" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/xavier/pruebas/ui/take_sample/PhotoCameraFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2627866">
+          <caret line="115" column="14" selection-start-line="115" selection-start-column="14" selection-end-line="115" selection-end-column="14" />
+          <folding>
+            <element signature="e#4070#4273#0" expanded="true" />
+            <element signature="e#4272#4273#0" expanded="true" />
           </folding>
         </state>
       </provider>
