@@ -33,7 +33,7 @@ public class TakeSampleActivity extends AppCompatActivity implements PhotoFragme
 
     //private int proximoPaso = 0;
     private TextView lb_nro_paso;
-    private Workflow workflow;
+    protected Workflow workflow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +44,7 @@ public class TakeSampleActivity extends AppCompatActivity implements PhotoFragme
 
         lb_nro_paso = (TextView) findViewById(R.id.lb_nro_paso);
 
-
+/*
         // Opciones para el multi select
         ArrayList<MultipleSelectOption> optionsToSelect = new ArrayList<MultipleSelectOption>();
         optionsToSelect.add(new MultipleSelectOption(getResources().getString(R.string.step_3_param_1), false));
@@ -71,11 +71,16 @@ public class TakeSampleActivity extends AppCompatActivity implements PhotoFragme
 
         workflow.addStep(new PhotoStep(getResources().getString(R.string.step_4_param_1),getResources().getString(R.string.step_4_param_2)));
         workflow.addStep(new InformationStep(getResources().getString(R.string.step_6_param_1)));
+*/
+
+    }
+
+    @Override
+    protected void onStart () {
+        super.onStart();
 
         siguientePaso();
-
         actualizarPasoEnPantalla();
-
     }
 
     private void siguientePaso() {

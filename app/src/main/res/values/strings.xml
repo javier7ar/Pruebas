@@ -13,21 +13,21 @@
     <!-- Step Params -->
     <string name="step_1_param_1">Registro regional de gatos. Gracias por ayudarnos. Vamos a pedirle que saque una serie de dos fotos a su gato. Siga las instrucciones que le aparecerán en pantalla.</string>
 
-    <string name="step_2_param_1">Saquenle una foto de cuerpo completo a su gato.</string>
-    <string name="step_2_param_2">Saquenle una foto de cuerpo completo a su gato.</string>
+    <string name="step_2_param_1">Tome una foto de cuerpo completo a su gato.</string>
+    <string name="step_2_param_2">Tome una foto de cuerpo completo a su gato.</string>
 
-    <string name="step_3_param_1">Tiene cola?</string>
-    <string name="step_3_param_2">Tiene 4 patas?</string>
-    <string name="step_3_param_3">Es de raza?</string>
-    <string name="step_3_param_4">Seguro que no es una mina?</string>
+    <string name="step_3_param_1">Ranas/Sapos</string>
+    <string name="step_3_param_2">Peces</string>
+    <string name="step_3_param_3">Tortugas</string>
+    <string name="step_3_param_4">Aves acuáticas</string>
 
-    <string name="step_4_param_1">Saquele una foto a la cabeza de su gato.</string>
+    <string name="step_4_param_1">Tome una foto a la cabeza de su gato.</string>
     <string name="step_4_param_2">""</string>
 
-    <string name="step_5_param_1">Es color Negro</string>
-    <string name="step_5_param_2">Es color Blanco</string>
-    <string name="step_5_param_3">Es multicolor</string>
-    <string name="step_5_param_4">Es de otro color</string>
+    <string name="step_5_param_1">Mucho, junto</string>
+    <string name="step_5_param_2">Mucho, disperso</string>
+    <string name="step_5_param_3">Poco</string>
+    <string name="step_5_param_4">No hay ganado</string>
 
     <string name="step_6_param_1">Muchas gracias por su colaboracion!</string>
 

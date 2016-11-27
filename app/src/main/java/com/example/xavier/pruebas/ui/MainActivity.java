@@ -8,13 +8,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.example.xavier.pruebas.R;
 import com.example.xavier.pruebas.ui.take_sample.TakeSampleActivity;
 
 
 public class MainActivity extends AppCompatActivity {
-
+    protected TextView lb_main_titulo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        lb_main_titulo = (TextView) findViewById(R.id.lb_main_titulo);
 
     }
 
@@ -50,9 +52,12 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void tomarMuestra(View view){
+        startTakeSampleActivity();
+    }
+
+    protected void startTakeSampleActivity() {
         Intent intent = new Intent(this, TakeSampleActivity.class);
         startActivity(intent);
     }
-
 
 }

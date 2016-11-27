@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:text="@string/txt_wellcome_message"
         android:layout_centerInParent="true"
-        android:id="@+id/textView" />
+        android:id="@+id/lb_main_titulo" />
 
 
 
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:text="@string/bt_take_sample"
         android:id="@+id/button3"
-        android:layout_below="@+id/textView"
+        android:layout_below="@+id/lb_main_titulo"
         android:layout_centerHorizontal="true"
         android:onClick="tomarMuestra" />
 

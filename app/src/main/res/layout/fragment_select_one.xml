@@ -5,12 +5,23 @@
     tools:context=".ui.take_sample.SelectOneFragment">
 
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="40dp"
+        android:layout_centerHorizontal="true"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="¿Observa ganado cerca del lugar?"
+        android:id="@+id/textView2" />
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/scrollView"
         android:layout_centerHorizontal="true"
-        android:layout_centerInParent="true"
+        android:layout_below="@+id/textView2"
         android:layout_above="@+id/bt_next"
 
        >
@@ -21,6 +32,7 @@
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
+            android:layout_marginLeft="20dp"
             android:showDividers="middle"
             android:divider="@drawable/empty_tall_divider"
             >
@@ -30,6 +42,8 @@
 
 
     </ScrollView>
+
+
 
     <Button
         android:id="@+id/bt_next"
